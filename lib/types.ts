@@ -44,6 +44,7 @@ export interface BlogPost {
   date: string;
   tags: string[];
   canonical_url?: string;
+  cover_image?: string;
   summary: string;
   content: string;
   readTimeMinutes: number;

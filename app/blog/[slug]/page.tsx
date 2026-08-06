@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog-data";
 import BlogPostClient from "./client-page";
 import { notFound } from "next/navigation";
@@ -7,10 +7,15 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
   if (!post) return { title: "Article Not Found | Daniel Iván Parra Verde" };
+
+  const previousImages = (await parent).openGraph?.images || [];
 
   return {
     title: `${post.title} | Daniel Iván Parra Verde`,
@@ -25,6 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       authors: ["Daniel Iván Parra Verde"],
       tags: post.tags,
+      images: post.cover_image
+        ? [post.cover_image, ...previousImages]
+        : previousImages,
     },
     twitter: {
       card: "summary_large_image",
