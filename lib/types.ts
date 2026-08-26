@@ -49,3 +49,12 @@ export interface BlogPost {
   content: string;
   readTimeMinutes: number;
 }
+
+export interface CertificationItem {
+  name: string;
+  shortName: string;
+  issuer: string;
+  date: string;
+  credlyUrl: string;
+  badgeImage: string;
+}

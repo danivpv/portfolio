@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { HERO_DATA } from "@/lib/data";
+import { HERO_DATA, CERTIFICATIONS } from "@/lib/data";
 import { LuArrowRight, LuDownload } from "react-icons/lu";
 
 export default function HeroSection() {
@@ -65,6 +65,24 @@ export default function HeroSection() {
                 className="object-cover object-center drop-shadow-2xl"
               />
             </div>
+            {/* Certification badge overlay — bottom-right of portrait */}
+            {CERTIFICATIONS.length > 0 && (
+              <a
+                href={CERTIFICATIONS[0].credlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Verify ${CERTIFICATIONS[0].name} on Credly`}
+                className="absolute -bottom-3 -right-3 sm:-bottom-1 sm:-right-1 lg:bottom-0 lg:right-0 z-10 w-24 h-24 xl:w-28 xl:h-28 hover:scale-110 active:scale-95 transition-all duration-300 drop-shadow-lg block"
+              >
+                <Image
+                  src={CERTIFICATIONS[0].badgeImage}
+                  alt={CERTIFICATIONS[0].name}
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-contain"
+                />
+              </a>
+            )}
           </div>
         </div>
       </div>

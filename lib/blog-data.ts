@@ -6,7 +6,7 @@ import { BlogPost } from "./types";
 export function getBlogPosts(): BlogPost[] {
   const contentDir = path.join(process.cwd(), "content", "blog");
   let files: string[] = [];
-  
+
   try {
     if (fs.existsSync(contentDir)) {
       files = fs.readdirSync(contentDir).filter(file => file.endsWith(".md"));
@@ -16,10 +16,17 @@ export function getBlogPosts(): BlogPost[] {
     return [];
   }
 
-  const posts = files.map((filename) => {
+  const isProd = process.env.NODE_ENV === "production";
+
+  const posts: BlogPost[] = files.flatMap((filename) => {
     const filePath = path.join(contentDir, filename);
     const rawContent = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(rawContent);
+
+    // Hide 'published: false' posts only in production
+    if (isProd && data.published === false) {
+      return [];
+    }
 
     // Dynamic read time calculation (200 words per minute)
     const wordCount = content.trim().split(/\s+/).length;
@@ -39,7 +46,7 @@ export function getBlogPosts(): BlogPost[] {
       formattedDate = "2026-01-01"; // Fallback
     }
 
-    return {
+    return [{
       slug,
       title: data.title || "Untitled",
       date: formattedDate,
@@ -49,19 +56,11 @@ export function getBlogPosts(): BlogPost[] {
       summary: data.summary || "",
       readTimeMinutes,
       content,
-      isPublished: data.published !== false,
-    };
+    }];
   });
 
-  // Hide 'published: false' posts only in production
-  const isProd = process.env.NODE_ENV === "production";
-  const visiblePosts = isProd ? posts.filter(p => p.isPublished) : posts;
-
-  // Remove the temporary 'isPublished' flag to strictly match BlogPost type
-  const cleanedPosts: BlogPost[] = visiblePosts.map(({ isPublished, ...post }) => post as BlogPost);
-
   // Sort descending by date
-  return cleanedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {

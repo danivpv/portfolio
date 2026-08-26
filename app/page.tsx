@@ -1,5 +1,5 @@
 import React from "react";
-import { SOCIAL_LINKS } from "@/lib/data";
+import { SOCIAL_LINKS, CERTIFICATIONS } from "@/lib/data";
 import BackgroundOrbs from "@/components/BackgroundOrbs";
 import SideNav from "@/components/SideNav";
 import HeroSection from "@/components/sections/HeroSection";
@@ -22,6 +22,14 @@ export default function PortfolioSPA() {
     ],
     description:
       "Production machine learning systems, and autonomous AI agent architectures.",
+    hasCredential: CERTIFICATIONS.map((cert) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: cert.name,
+      credentialCategory: "Professional Certification",
+      recognizedBy: { "@type": "Organization", name: cert.issuer },
+      dateCreated: "2026-08-26",
+      url: cert.credlyUrl,
+    })),
   };
 
   return (

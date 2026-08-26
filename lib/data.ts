@@ -1,4 +1,4 @@
-import { NavItem, SkillItem, IndustryExperienceItem, AcademicInstitutionItem } from "./types";
+import { NavItem, SkillItem, IndustryExperienceItem, AcademicInstitutionItem, CertificationItem } from "./types";
 import { LuHouse, LuUser, LuBriefcase, LuCode, LuMail } from "react-icons/lu";
 
 export const NAV_ITEMS: NavItem[] = [
@@ -10,7 +10,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const HERO_DATA = {
-  badge: "AI/ML Engineer & Data Scientist",
+  badge: "AI/ML Engineer · AWS Certified Solutions Architect",
   headlinePrefix: "Behind the MLOps, ",
   headlineHighlight: "are the subsystems.",
   bioPrefix: "Production ML systems, and ",
@@ -85,7 +85,7 @@ export const INDUSTRY_EXPERIENCE: IndustryExperienceItem[] = [
       "GitHub Actions",
       "Terraform",
     ],
-    date: "April 2025 – Present",
+    date: "April 2025 - Present",
     details: [
       "Scaled 1K JUMEX models on 100 EMR Serverless workers via Spark, Temporal, Kafka, FastAPI; integrated into ML platform (SDK, Livy).",
       "Automated AI agent monitoring via verifiable metrics and LLM-as-Judge via FastAPI, PostgreSQL, Temporal and Arkham's dashboard.",
@@ -114,7 +114,7 @@ export const INDUSTRY_EXPERIENCE: IndustryExperienceItem[] = [
       "Python",
       "TypeScript",
     ],
-    date: "November 2024 – April 2025",
+    date: "November 2024 - April 2025",
     details: [
       "Ran client discovery and shipped deployable catalog and FAQ AI agent MVPs (+95% recall@3 on 10% of SKU) with Next.js, AWS, LlamaIndex and Redis.",
     ],
@@ -134,7 +134,7 @@ export const INDUSTRY_EXPERIENCE: IndustryExperienceItem[] = [
       "Pandas",
       "scikit-learn",
     ],
-    date: "November 2023 – June 2024",
+    date: "November 2023 - June 2024",
     details: [
       "Tuned PyTorch RNNs for sales forecasting in enterprise retail revenue management for major clients (12% forward MAPE); AWS batch ML via Django.",
       "Modeled competitors' pricing data, reducing forecasting MAPE by 40% and enabling price-demand elasticity analysis via Pandas and scikit-learn.",
@@ -157,7 +157,7 @@ export const INDUSTRY_EXPERIENCE: IndustryExperienceItem[] = [
       "Dash",
       "Plotly",
     ],
-    date: "February 2023 – November 2023",
+    date: "February 2023 - November 2023",
     details: [
       "Built 8 ETL pipelines (Python, bs4, Airflow) ingesting 2K docs with 100M+ tokens from official Mexican government sites into MongoDB for legal partners.",
       "Engineered RAG pipelines; raised custom QA LLM-as-Judge accuracy from 8% to 72% on legal corpora using LlamaIndex, MongoDB and LangChain.",
@@ -170,7 +170,7 @@ export const INDUSTRY_EXPERIENCE: IndustryExperienceItem[] = [
     title: "Software Developer",
     externalUrl: "https://www.wolfram.com/company/",
     technologies: ["Wolfram Language", "XML", "Wolfram Cloud"],
-    date: "February 2021 – February 2022",
+    date: "February 2021 - February 2022",
     details: [
       "Sysadmin. Fullstack dev of portal for 'Wolfram Summer Camp' (+40 users).",
       "Published paper 'Turing Patterns in Networks' in Complex Systems Journal.",
@@ -264,4 +264,13 @@ export const SOCIAL_LINKS = {
   huggingface: "https://huggingface.co/danivpv",
 };
 
-
+export const CERTIFICATIONS: CertificationItem[] = [
+  {
+    name: "AWS Certified Solutions Architect \u2013 Associate",
+    shortName: "AWS SAA-C03",
+    issuer: "Amazon Web Services",
+    date: "August 2026",
+    credlyUrl: "https://www.credly.com/badges/e618901b-4ee9-4470-aa58-df98790f17ea/public_url",
+    badgeImage: "/badges/aws-saa.png",
+  },
+];

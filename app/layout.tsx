@@ -27,13 +27,13 @@ const monoFont = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://danivpv.com"),
-  title: "Daniel Iván Parra Verde — Behind the MLOps, are the subsystems.",
+  title: "Daniel Iván Parra Verde — ML Engineer & AWS Certified Solutions Architect",
   description:
-    "Production machine learning systems, and AI agents.",
+    "Production ML platforms, AI agents, and cloud infrastructure. AWS Certified Solutions Architect - Associate.",
   openGraph: {
-    title: "Daniel Iván Parra Verde - AI & ML Engineering",
+    title: "Daniel Iván Parra Verde - AI/ML Engineering & Cloud Architecture",
     description:
-      "Production machine learning systems, and AI agents.",
+      "Production ML platforms, AI agents, and cloud infrastructure. AWS Certified Solutions Architect Associate.",
     url: "https://danivpv.com",
     siteName: "Daniel Iván Parra Verde",
     locale: "en_US",
@@ -41,17 +41,17 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://danivpv.com/opengraph-image.jpg",
-        width: 1536,
-        height: 807,
-        alt: "Daniel Iván Parra Verde — AI & ML Engineering",
+        width: 1200,
+        height: 630,
+        alt: "Daniel Iván Parra Verde — ML Engineer & AWS Certified Solutions Architect",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Iván Parra Verde - AI & ML Engineering",
+    title: "Daniel Iván Parra Verde - AI/ML Engineering & Cloud Architecture",
     description:
-      "Production machine learning systems, and AI agents.",
+      "Production ML platforms, AI agents, and cloud infrastructure. AWS Certified Solutions Architect Associate.",
     images: ["https://danivpv.com/opengraph-image.jpg"],
   },
 };
