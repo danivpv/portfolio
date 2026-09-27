@@ -9,8 +9,25 @@ export default function HeroSection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-12 items-center w-full">
         {/* Editorial Typography & Actions */}
         <div className="lg:col-span-7 flex flex-col justify-center">
-          <div className="font-mono text-xs uppercase tracking-widest text-accent font-normal mb-4 sm:mb-5">
-            {HERO_DATA.badge}
+          <div className="font-mono text-xs uppercase tracking-widest text-accent font-normal mb-4 sm:mb-5 flex flex-wrap items-center gap-1.5">
+            <span>
+              AI/ML Engineer · AWS Certified{CERTIFICATIONS.length > 1 ? ` ${CERTIFICATIONS.length}x` : ""} (
+            </span>
+            {CERTIFICATIONS.map((cert, index) => (
+              <React.Fragment key={cert.acronym}>
+                {index > 0 && <span>,</span>}
+                <a
+                  href={cert.credlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent underline underline-offset-4 decoration-accent/40 hover:decoration-accent hover:text-accent-subtle transition-colors cursor-pointer"
+                  title={`Verify ${cert.name} on Credly`}
+                >
+                  {cert.acronym}
+                </a>
+              </React.Fragment>
+            ))}
+            <span>)</span>
           </div>
 
           <h1 className="font-primary text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-normal tracking-normal text-text-primary mb-5 sm:mb-6 leading-[1.16]">
@@ -65,23 +82,36 @@ export default function HeroSection() {
                 className="object-cover object-center drop-shadow-2xl"
               />
             </div>
-            {/* Certification badge overlay — bottom-right of portrait */}
+            {/* Certification badges overlay — anchored to bottom-right of portrait */}
             {CERTIFICATIONS.length > 0 && (
-              <a
-                href={CERTIFICATIONS[0].credlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Verify ${CERTIFICATIONS[0].name} on Credly`}
-                className="absolute -bottom-3 -right-3 sm:-bottom-1 sm:-right-1 lg:bottom-0 lg:right-0 z-10 w-24 h-24 xl:w-28 xl:h-28 hover:scale-110 active:scale-95 transition-all duration-300 drop-shadow-lg block"
-              >
-                <Image
-                  src={CERTIFICATIONS[0].badgeImage}
-                  alt={CERTIFICATIONS[0].name}
-                  width={128}
-                  height={128}
-                  className="w-full h-full object-contain"
-                />
-              </a>
+              <div className="absolute -bottom-4 -right-4 sm:-bottom-2 sm:-right-2 lg:-bottom-1 lg:-right-1 z-10 flex items-end justify-end pointer-events-none">
+                <div
+                  className={`flex items-center pointer-events-auto ${CERTIFICATIONS.length >= 3
+                    ? "-space-x-5 sm:-space-x-6 xl:-space-x-7"
+                    : "-space-x-2 sm:-space-x-2.5"
+                    }`}
+                >
+                  {CERTIFICATIONS.map((cert, index) => (
+                    <a
+                      key={cert.shortName}
+                      href={cert.credlyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Verify ${cert.name} on Credly`}
+                      style={{ zIndex: index + 1 }}
+                      className="w-[84px] h-[84px] sm:w-[94px] sm:h-[94px] xl:w-[104px] xl:h-[104px] hover:scale-110 hover:z-20 active:scale-95 transition-all duration-300 drop-shadow-xl block shrink-0"
+                    >
+                      <Image
+                        src={cert.badgeImage}
+                        alt={cert.name}
+                        width={128}
+                        height={128}
+                        className="w-full h-full object-contain"
+                      />
+                    </a>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         </div>

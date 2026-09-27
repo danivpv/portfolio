@@ -27,7 +27,7 @@ export default function PortfolioSPA() {
       name: cert.name,
       credentialCategory: "Professional Certification",
       recognizedBy: { "@type": "Organization", name: cert.issuer },
-      dateCreated: "2026-08-26",
+      dateCreated: cert.issueDateISO,
       url: cert.credlyUrl,
     })),
   };

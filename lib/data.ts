@@ -10,7 +10,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const HERO_DATA = {
-  badge: "AI/ML Engineer · AWS Certified Solutions Architect",
+  badge: "AI/ML Engineer · AWS Certified 2x (AIP-C01, SAA-C03)",
   headlinePrefix: "Behind the MLOps, ",
   headlineHighlight: "are the subsystems.",
   bioPrefix: "Production ML systems, and ",
@@ -266,10 +266,22 @@ export const SOCIAL_LINKS = {
 
 export const CERTIFICATIONS: CertificationItem[] = [
   {
+    name: "AWS Certified Generative AI Developer \u2013 Professional",
+    shortName: "AWS AIP-C01",
+    acronym: "AIP-C01",
+    issuer: "Amazon Web Services",
+    date: "September 2026",
+    issueDateISO: "2026-09-21",
+    credlyUrl: "https://www.credly.com/badges/2ccb9e1c-67e0-47f0-92e4-1d1c532c66ab/public_url",
+    badgeImage: "/badges/aws-aip.png",
+  },
+  {
     name: "AWS Certified Solutions Architect \u2013 Associate",
     shortName: "AWS SAA-C03",
+    acronym: "SAA-C03",
     issuer: "Amazon Web Services",
     date: "August 2026",
+    issueDateISO: "2026-08-26",
     credlyUrl: "https://www.credly.com/badges/e618901b-4ee9-4470-aa58-df98790f17ea/public_url",
     badgeImage: "/badges/aws-saa.png",
   },

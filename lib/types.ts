@@ -53,8 +53,10 @@ export interface BlogPost {
 export interface CertificationItem {
   name: string;
   shortName: string;
+  acronym: string;
   issuer: string;
   date: string;
+  issueDateISO: string;
   credlyUrl: string;
   badgeImage: string;
 }
