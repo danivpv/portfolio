@@ -15,16 +15,16 @@
     --font-secondary-family: var(--font-secondary, 'Inter', sans-serif);
     --font-mono-family: var(--font-mono, 'JetBrains Mono', monospace);
 
-    --bg-primary: #FAFAFA; /* Crisp off-white paper */
-    --bg-card: #FFFFFF; /* Pure white for depth */
-    --border-card: #E5E7EB; /* Subtle light gray */
-    --text-primary: #111827; /* Deep charcoal (NOT pure black) */
-    --text-secondary: #4B5563; /* Readable slate gray for body */
-    --text-muted: #9CA3AF; /* Light gray for metadata */
+    --bg-primary: #F8FAFC; /* Clean, calm slate-tinted white paper */
+    --bg-card: #FFFFFF; /* Crisp pure white cards with distinct elevation */
+    --border-card: #E2E8F0; /* Clean, sharp border (slate-200) */
+    --text-primary: #0F172A; /* Slate-900: decisive, authoritative contrast */
+    --text-secondary: #334155; /* Slate-700: high legibility body text */
+    --text-muted: #64748B; /* Slate-500: crisp metadata that never washes out */
     
-    /* We must use a darker emerald for light mode to ensure contrast */
-    --accent: #059669; 
-    --accent-subtle: #D1FAE5; /* Very soft emerald background for hovers */
+    /* Emerald with rich luminance and contrast (WCAG AAA against #F8FAFC & #FFFFFF) */
+    --accent: #047857; /* Emerald-700: deep, punchy emerald */
+    --accent-subtle: #ECFDF5; /* Emerald-50: luminous mint hover/highlight tint */
   }
 
   .dark {
@@ -70,10 +70,16 @@ body {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.15);
   border-radius: 3px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+}
 ::-webkit-scrollbar-thumb:hover {
+  background: rgba(4, 120, 87, 0.5);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
   background: rgba(52, 211, 153, 0.4);
 }
 

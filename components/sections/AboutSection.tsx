@@ -18,15 +18,18 @@ export default function AboutSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Editorial Bio Text */}
-        <div className="lg:col-span-6 space-y-5 text-text-secondary leading-relaxed font-secondary text-base sm:text-lg font-normal">
+        <div className="lg:col-span-6 space-y-6 text-text-secondary leading-relaxed font-secondary text-base sm:text-lg font-normal">
           <p>
-            Early in my career developing RAG pipelines and forecasting algorithms at Kuona and Entropía, I learned a hard truth: mathematical modeling is only the &apos;last mile&apos; of enterprise AI. A state-of-the-art model has zero business impact if it suffers from training-serving skew, no lineage of data to model lineage or event tracing in production.
+            Mathematical modeling is only the last mile of enterprise AI. A high-performing model has zero business impact without quality data, if it suffers from training-serving skew, lacks data-to-model lineage, or runs without aligned evaluation gates.
           </p>
           <p>
-            To own true end-to-end impact across the analytics value chain, I built deep platform capabilities, from cloud infrastructure to fullstack integration and from data pipelines to model serving. I partner directly with teams through technical and business discovery to build and ship production AI/ML systems that deliver measurable bottom-line value.
+            True governance and business leverage comes from quality engineering of the full operational stack: scalable feature stores, artifact versioning, runtime and infrastructure observability, rigorous offline and online evaluation, and decoupled architectures.
+          </p>
+          <p>
+            Today, as a GenAI and ML Solutions Architect, my focus is designing the cloud software and systems that operationalize intelligence: autonomous multi-tool agents via AWS Bedrock AgentCore, reproducible training pipelines, and cost-optimized AWS CDK infrastructure built to withstand production scale.
           </p>
           <p className="font-secondary text-xs sm:text-sm text-text-primary pt-2 border-l-2 border-accent/60 pl-4 italic">
-            Focus: Bridging last mile AI and ML models to the operational reality of a business.
+            Focus: Architecting end-to-end cloud and AI solutions that bridge mathematical depth to business reality.
           </p>
         </div>
 

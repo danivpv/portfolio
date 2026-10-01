@@ -38,7 +38,7 @@ export default function AcademicModal({ inst, onClose }: AcademicModalProps) {
           )}
           <div>
             <h3 className="font-primary text-3xl sm:text-4xl font-normal text-text-primary tracking-wide">
-              {inst.institutionAcronym} — {inst.institutionName}
+              {inst.institutionAcronym} - {inst.institutionName}
             </h3>
             <p className="font-secondary text-sm text-text-secondary mt-1">
               {inst.degree || "Research Scholar"} {inst.major && `(${inst.major})`} • Started {inst.startDate}

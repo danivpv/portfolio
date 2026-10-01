@@ -47,7 +47,7 @@ export default function ExperienceCard({ exp, onSelect }: ExperienceCardProps) {
       {/* Optional Subtle Editorial Status Tag */}
       <div className="mt-4 pt-3 border-t border-border-card w-full flex justify-center">
         <span className="font-mono text-xs uppercase tracking-widest font-semibold text-text-secondary group-hover:text-accent transition-colors">
-          {exp.date.split("—")[0].trim()}
+          {exp.date.split("-")[0].trim()}
         </span>
       </div>
     </button>

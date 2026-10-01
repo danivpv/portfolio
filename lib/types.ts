@@ -60,3 +60,14 @@ export interface CertificationItem {
   credlyUrl: string;
   badgeImage: string;
 }
+
+export interface ProjectItem {
+  title: string;
+  tagline: string;
+  description: string;
+  tags: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  blogUrl?: string;
+}
+

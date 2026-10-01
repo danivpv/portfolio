@@ -72,7 +72,7 @@ export default function SideNav({ activeId: propActiveId }: SideNavProps = {}) {
 
         {/* Professional Issues Counter Badge located at the bottom of the sidebar list, centered */}
         <div className="w-full flex items-center justify-center pt-1.5">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-accent-subtle text-accent font-secondary text-[11px] font-medium border border-accent/20">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-accent-subtle text-accent font-secondary text-[11px] font-medium border border-accent/30 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
             <span>N | 0 Issues</span>
           </span>

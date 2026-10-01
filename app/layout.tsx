@@ -27,11 +27,11 @@ const monoFont = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://danivpv.com"),
-  title: "Daniel Iván Parra Verde — ML Engineer & AWS Certified 2x (AIP-C01, SAA-C03)",
+  title: "Daniel Iván Parra Verde - GenAI & ML Solutions Architect & AWS Certified 2x (AIP-C01, SAA-C03)",
   description:
     "Production ML platforms, AI agents, and cloud infrastructure. AWS Certified Generative AI Developer - Professional & Solutions Architect - Associate.",
   openGraph: {
-    title: "Daniel Iván Parra Verde - AI/ML Engineering & Cloud Architecture",
+    title: "Daniel Iván Parra Verde - GenAI & ML Solutions Architect & AWS Certified 2x (AIP-C01, SAA-C03)",
     description:
       "Production ML platforms, AI agents, and cloud infrastructure. AWS Certified 2x (AIP-C01, SAA-C03).",
     url: "https://danivpv.com",
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
         url: "https://danivpv.com/opengraph-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Daniel Iván Parra Verde — ML Engineer & AWS Certified 2x (AIP-C01, SAA-C03)",
+        alt: "Daniel Iván Parra Verde - GenAI & ML Solutions Architect & AWS Certified 2x (AIP-C01, SAA-C03)",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniel Iván Parra Verde - AI/ML Engineering & Cloud Architecture",
+    title: "Daniel Iván Parra Verde - GenAI & ML Solutions Architect & AWS Certified 2x (AIP-C01, SAA-C03)",
     description:
       "Production ML platforms, AI agents, and cloud infrastructure. AWS Certified 2x (AIP-C01, SAA-C03).",
     images: ["https://danivpv.com/opengraph-image.jpg"],

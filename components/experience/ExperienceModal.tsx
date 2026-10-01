@@ -41,7 +41,7 @@ export default function ExperienceModal({ exp, onClose }: ExperienceModalProps) 
               {exp.company}
             </h3>
             <p className="font-secondary text-sm text-text-secondary mt-1">
-              {exp.title} — {exp.date}
+              {exp.title} - {exp.date}
             </p>
           </div>
         </div>

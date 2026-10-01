@@ -14,7 +14,7 @@ export default function PortfolioSPA() {
     "@type": "Person",
     name: "Daniel Iván Parra Verde",
     url: "https://danivpv.com",
-    jobTitle: "Senior ML & AI Engineer",
+    jobTitle: "GenAI & ML Solutions Architect",
     sameAs: [
       SOCIAL_LINKS.github,
       SOCIAL_LINKS.linkedin,
