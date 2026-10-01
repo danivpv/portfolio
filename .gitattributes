@@ -1,1 +1,40 @@
+# Set default behavior to automatically normalize line endings to LF on commit
 * text=auto eol=lf
+
+# Treat lock files as binary to suppress huge diff churn in `git diff --stat`
+package-lock.json -diff
+yarn.lock -diff
+pnpm-lock.yaml -diff
+bun.lock -diff
+bun.lockb -diff
+*.lock -diff
+
+# Mark lock files as generated to auto-collapse them in GitHub PR reviews
+package-lock.json linguist-generated=true
+yarn.lock linguist-generated=true
+pnpm-lock.yaml linguist-generated=true
+bun.lock linguist-generated=true
+bun.lockb linguist-generated=true
+*.lock linguist-generated=true
+
+# Exclude lock files from repository language statistics (GitHub language bar)
+package-lock.json linguist-vendored=true
+yarn.lock linguist-vendored=true
+pnpm-lock.yaml linguist-vendored=true
+bun.lock linguist-vendored=true
+bun.lockb linguist-vendored=true
+*.lock linguist-vendored=true
+
+# Images & media assets treated as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.pdf binary
+
+# Vector icons & web text assets
+*.svg text
+*.json text
+*.css text
