@@ -17,7 +17,8 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const HERO_DATA = {
-	badge: "GenAI & ML Solutions Architect · AWS Certified",
+	badge: "GenAI & ML Solutions Architect",
+	certPrefix: "AWS Certified",
 	headlinePrefix: "GenAI & ML ",
 	headlineHighlight: "Solutions Architect",
 	bioPrefix:

@@ -1,86 +1,84 @@
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog-data";
 import BlogPostClient from "./client-page";
-import { notFound } from "next/navigation";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+	params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
+	{ params }: Props,
+	parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
-  if (!post) return { title: "Article Not Found | Daniel Iván Parra Verde" };
+	const { slug } = await params;
+	const post = getBlogPostBySlug(slug);
+	if (!post) return { title: "Article Not Found | Daniel Iván Parra Verde" };
 
-  const previousImages = (await parent).openGraph?.images || [];
+	const previousImages = (await parent).openGraph?.images || [];
 
-  return {
-    title: `${post.title} | Daniel Iván Parra Verde`,
-    description: post.summary,
-    alternates: {
-      canonical: post.canonical_url || `https://danivpv.com/blog/${slug}`,
-    },
-    openGraph: {
-      title: post.title,
-      description: post.summary,
-      url: `https://danivpv.com/blog/${slug}`,
-      type: "article",
-      authors: ["Daniel Iván Parra Verde"],
-      tags: post.tags,
-      images: post.cover_image
-        ? [post.cover_image, ...previousImages]
-        : previousImages,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.summary,
-      creator: "@danivpv",
-    },
-  };
+	return {
+		title: `${post.title} | Daniel Iván Parra Verde`,
+		description: post.summary,
+		alternates: {
+			canonical: post.canonical_url || `https://danivpv.com/blog/${slug}`,
+		},
+		openGraph: {
+			title: post.title,
+			description: post.summary,
+			url: `https://danivpv.com/blog/${slug}`,
+			type: "article",
+			authors: ["Daniel Iván Parra Verde"],
+			tags: post.tags,
+			images: post.cover_image ? [post.cover_image, ...previousImages] : previousImages,
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: post.title,
+			description: post.summary,
+			creator: "@danivpv",
+		},
+	};
 }
 
 export async function generateStaticParams() {
-  const posts = getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
+	const posts = getBlogPosts();
+	return posts.map((post) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
-  if (!post) return notFound();
+	const { slug } = await params;
+	const post = getBlogPostBySlug(slug);
+	if (!post) return notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.summary,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: [
-      {
-        "@type": "Person",
-        name: "Daniel Iván Parra Verde",
-        url: "https://danivpv.com",
-      },
-    ],
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": post.canonical_url || `https://danivpv.com/blog/${post.slug}`,
-    },
-    keywords: post.tags.join(", "),
-  };
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline: post.title,
+		description: post.summary,
+		datePublished: post.date,
+		dateModified: post.date,
+		author: [
+			{
+				"@type": "Person",
+				name: "Daniel Iván Parra Verde",
+				url: "https://danivpv.com",
+			},
+		],
+		mainEntityOfPage: {
+			"@type": "WebPage",
+			"@id": post.canonical_url || `https://danivpv.com/blog/${post.slug}`,
+		},
+		keywords: post.tags.join(", "),
+	};
 
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <BlogPostClient post={post} />
-    </>
-  );
+	return (
+		<>
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+			<BlogPostClient post={post} />
+		</>
+	);
 }
