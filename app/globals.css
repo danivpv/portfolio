@@ -4,123 +4,124 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
-  :root {
-    /* 
+	:root {
+		/* 
       MODULAR TYPOGRAPHY SYSTEM
       To swap between "Editorial" and "Modern Tech":
       - For Editorial: --font-primary is Serif, --font-secondary is Sans, --font-mono is Mono.
       - For Modern Tech: set --font-primary to var(--font-secondary) or another modern geometric sans.
     */
-    --font-primary-family: var(--font-primary, 'Instrument Serif', serif);
-    --font-secondary-family: var(--font-secondary, 'Inter', sans-serif);
-    --font-mono-family: var(--font-mono, 'JetBrains Mono', monospace);
+		--font-primary-family: var(--font-primary, "Instrument Serif", serif);
+		--font-secondary-family: var(--font-secondary, "Inter", sans-serif);
+		--font-mono-family: var(--font-mono, "JetBrains Mono", monospace);
 
-    --bg-primary: #F8FAFC; /* Clean, calm slate-tinted white paper */
-    --bg-card: #FFFFFF; /* Crisp pure white cards with distinct elevation */
-    --border-card: #E2E8F0; /* Clean, sharp border (slate-200) */
-    --text-primary: #0F172A; /* Slate-900: decisive, authoritative contrast */
-    --text-secondary: #334155; /* Slate-700: high legibility body text */
-    --text-muted: #64748B; /* Slate-500: crisp metadata that never washes out */
-    
-    /* Emerald with rich luminance and contrast (WCAG AAA against #F8FAFC & #FFFFFF) */
-    --accent: #047857; /* Emerald-700: deep, punchy emerald */
-    --accent-subtle: #ECFDF5; /* Emerald-50: luminous mint hover/highlight tint */
-  }
+		--bg-primary: #f8fafc; /* Clean, calm slate-tinted white paper */
+		--bg-card: #ffffff; /* Crisp pure white cards with distinct elevation */
+		--border-card: #e2e8f0; /* Clean, sharp border (slate-200) */
+		--text-primary: #0f172a; /* Slate-900: decisive, authoritative contrast */
+		--text-secondary: #334155; /* Slate-700: high legibility body text */
+		--text-muted: #64748b; /* Slate-500: crisp metadata that never washes out */
 
-  .dark {
-    /* DO NOT TOUCH THE EXISTING DARK MODE VARIABLES */
-    --bg-primary: #0A0D14;
-    --bg-card: rgba(15, 23, 42, 0.25);
-    --border-card: rgba(255, 255, 255, 0.07);
-    --text-primary: #FFFFFF;
-    --text-secondary: #94A3B8; /* slate-400 */
-    --text-muted: #64748B;
-    --accent: #34D399; /* Emerald 400 */
-    --accent-subtle: rgba(52, 211, 153, 0.08);
-  }
+		/* Emerald with rich luminance and contrast (WCAG AAA against #F8FAFC & #FFFFFF) */
+		--accent: #047857; /* Emerald-700: deep, punchy emerald */
+		--accent-subtle: #ecfdf5; /* Emerald-50: luminous mint hover/highlight tint */
+	}
+
+	.dark {
+		/* DO NOT TOUCH THE EXISTING DARK MODE VARIABLES */
+		--bg-primary: #0a0d14;
+		--bg-card: rgba(15, 23, 42, 0.25);
+		--border-card: rgba(255, 255, 255, 0.07);
+		--text-primary: #ffffff;
+		--text-secondary: #94a3b8; /* slate-400 */
+		--text-muted: #64748b;
+		--accent: #34d399; /* Emerald 400 */
+		--accent-subtle: rgba(52, 211, 153, 0.08);
+	}
 }
 
 @theme inline {
-  --color-bg-primary: var(--bg-primary);
-  --color-bg-card: var(--bg-card);
-  --color-border-card: var(--border-card);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
-  --color-accent: var(--accent);
-  --color-accent-subtle: var(--accent-subtle);
+	--color-bg-primary: var(--bg-primary);
+	--color-bg-card: var(--bg-card);
+	--color-border-card: var(--border-card);
+	--color-text-primary: var(--text-primary);
+	--color-text-secondary: var(--text-secondary);
+	--color-text-muted: var(--text-muted);
+	--color-accent: var(--accent);
+	--color-accent-subtle: var(--accent-subtle);
 
-  --font-primary: var(--font-primary-family);
-  --font-secondary: var(--font-secondary-family);
-  --font-mono: var(--font-mono-family);
+	--font-primary: var(--font-primary-family);
+	--font-secondary: var(--font-secondary-family);
+	--font-mono: var(--font-mono-family);
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-secondary);
-  font-family: var(--font-secondary-family);
-  transition: background-color 0.4s ease, color 0.4s ease;
+	background-color: var(--bg-primary);
+	color: var(--text-secondary);
+	font-family: var(--font-secondary-family);
+	transition:
+		background-color 0.4s ease,
+		color 0.4s ease;
 }
 
 /* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+	width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+	background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.15);
-  border-radius: 3px;
+	background: rgba(15, 23, 42, 0.15);
+	border-radius: 3px;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+	background: rgba(255, 255, 255, 0.12);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(4, 120, 87, 0.5);
+	background: rgba(4, 120, 87, 0.5);
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(52, 211, 153, 0.4);
+	background: rgba(52, 211, 153, 0.4);
 }
 
 @keyframes marquee-left-to-right {
-  0% {
-    transform: translate3d(-50%, 0, 0);
-  }
-  100% {
-    transform: translate3d(0%, 0, 0);
-  }
+	0% {
+		transform: translate3d(-50%, 0, 0);
+	}
+	100% {
+		transform: translate3d(0%, 0, 0);
+	}
 }
 
 @keyframes marquee-right-to-left {
-  0% {
-    transform: translate3d(0%, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
+	0% {
+		transform: translate3d(0%, 0, 0);
+	}
+	100% {
+		transform: translate3d(-50%, 0, 0);
+	}
 }
 
 .animate-marquee-left-to-right {
-  animation: marquee-left-to-right 65s linear infinite;
+	animation: marquee-left-to-right 65s linear infinite;
 }
 
 .animate-marquee-left-to-right-slow {
-  animation: marquee-left-to-right 80s linear infinite;
+	animation: marquee-left-to-right 80s linear infinite;
 }
 
 .animate-marquee-right-to-left {
-  animation: marquee-right-to-left 65s linear infinite;
+	animation: marquee-right-to-left 65s linear infinite;
 }
 
 .animate-marquee-right-to-left-slow {
-  animation: marquee-right-to-left 80s linear infinite;
+	animation: marquee-right-to-left 80s linear infinite;
 }
 
 .animate-marquee-left-to-right:hover,
 .animate-marquee-left-to-right-slow:hover,
 .animate-marquee-right-to-left:hover,
 .animate-marquee-right-to-left-slow:hover {
-  animation-play-state: paused;
+	animation-play-state: paused;
 }
-
