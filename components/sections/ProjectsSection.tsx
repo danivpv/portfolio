@@ -57,8 +57,8 @@ export default function ProjectsSection() {
 									))}
 								</div>
 
-								<div className="flex items-center justify-between pt-4 border-t border-border-card text-xs font-secondary">
-									<div className="flex items-center gap-3">
+								<div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 pt-4 border-t border-border-card text-xs font-secondary">
+									<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
 										{proj.liveUrl && (
 											<a
 												href={proj.liveUrl}

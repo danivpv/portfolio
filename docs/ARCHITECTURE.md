@@ -20,7 +20,7 @@ Interactive client-side logic is pushed to the leaves of the component tree to p
 - **`ContactSection.tsx` (Server Component)** renders static typography, headings, and outreach links on the server.
 - **`ContactForm.tsx` (Client Component)** encapsulates strictly the interactive `<form>`.
 - **`SkillsMarquee.tsx` (Server Component)** pre-renders static marquee items and categories; **`CategoryViewToggle.tsx` (Client Component)** encapsulates only the toggle state.
-- **Dynamic Imports (`next/dynamic`)**: Heavy modal components (`ExperienceModal.tsx`, `AcademicModal.tsx`) and the client diagram renderer (`Mermaid.tsx`) are lazy-loaded via `dynamic(..., { ssr: false })` so charting and detail views download only on interaction.
+- **Dynamic Imports (`next/dynamic`)**: Heavy modal components (`ExperienceModal.tsx`, `AcademicModal.tsx`) are lazy-loaded via `dynamic(..., { ssr: false })` so detail views download only on interaction.
 
 ### B. React 19 Form Actions & State Primitives
 Form processing eliminates manual `useState` loading flags and `e.preventDefault()` handlers:

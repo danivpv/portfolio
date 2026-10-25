@@ -468,6 +468,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
 			"Autonomous cloud economics agent built with AWS CDK, Bedrock AgentCore Gateway, and Next.js on Amplify to optimize commitment ROI.",
 		tags: ["AWS Bedrock", "AWS CDK", "Next.js", "FastAPI", "Amplify"],
 		liveUrl: "https://main.d1e2bsg3elvnb4.amplifyapp.com/",
+		blogUrl: "/blog/from-cloud-patterns-to-production",
 		githubUrl: "https://github.com/danivpv/finops-agent",
 	},
 	{

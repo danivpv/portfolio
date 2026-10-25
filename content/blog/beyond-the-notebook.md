@@ -12,7 +12,9 @@ cover_image:
 
 # Beyond the Notebook: The Operational Reality of an Enterprise ML Platform
 
-Data scientists solve the last-mile problem. Engineers build the road. Most organizations get this wrong: they collapse all roles into one person, or silo them so hard the systems never talk and operations suffer. This post deconstructs the ML engineer's piece: built from scratch across 2 CDK stacks, 4 Fargate tasks, and 3 persistent stores. Total AWS spend to build and validate the platform: ~$1. The [full deployment log](https://github.com/danivpv/ml-platform/blob/41f9d85d0a882fbc37fa829c2935b76e140511c9/docs/ml-platform-prd.md#2-architectural-decision-log) documents every decision, every bug, and the exact cost breakdown.
+Data scientists solve the last-mile problem. Engineers build the road. Most organizations get this wrong: they collapse all roles into one person, or silo them so hard the systems never talk and operations suffer. This post deconstructs the ML engineer's piece: built from scratch across 2 CDK stacks, 4 Fargate tasks, and 3 persistent stores. Total AWS spend to build and validate the platform: ~$1.
+
+Every architectural choice, rejected alternative, and operational boundary in this system is recorded in the [27-entry architectural decision log](https://github.com/danivpv/ml-platform/blob/41f9d85d0a882fbc37fa829c2935b76e140511c9/docs/ml-platform-prd.md#2-architecture-decision-log) at [`commit 41f9d85`](https://github.com/danivpv/ml-platform/tree/41f9d85d0a882fbc37fa829c2935b76e140511c9).
 
 ---
 
@@ -28,36 +30,7 @@ I wanted to build these systems from scratch. Not to compete with SageMaker, but
 
 ## The Platform: 4 Subsystems, 1 Operational Goal
 
-```mermaid
-architecture-beta
-    group region(cloud)[AWS Region]
-    group vpc(cloud)[Default VPC Boundary] in region
-    group data_plane(database)[Stateful Data Plane] in vpc
-    service s3_offline(disk)[S3 Feature Bucket] in data_plane
-    service dynamo_online(database)[DynamoDB Online Table] in data_plane
-    service rds_meta(database)[RDS Postgres Database] in data_plane
-    service s3_artifacts(disk)[S3 Artifacts Bucket] in data_plane
-
-    group control_plane(server)[Stateless Control Plane] in vpc
-    service fargate_mlflow(server)[ECS Fargate MLflow] in control_plane
-    service fargate_train(server)[ECS Fargate Training] in control_plane
-    service fargate_infer(server)[ECS Fargate Inference] in control_plane
-    service eventbridge(server)[EventBridge Scheduler] in control_plane
-
-    group observability(server)[Observability and Safeguards] in vpc
-    service cloudwatch(server)[CloudWatch Alarms] in observability
-
-    s3_offline:R -- L:fargate_train
-    s3_offline:R -- L:dynamo_online
-    dynamo_online:T -- B:fargate_infer
-    fargate_train:T -- B:fargate_mlflow
-    fargate_mlflow:B -- T:rds_meta
-    fargate_mlflow:R -- L:s3_artifacts
-    eventbridge:B -- T:fargate_infer
-    fargate_infer:L -- R:s3_offline
-    fargate_train:L -- R:cloudwatch
-    fargate_infer:L -- R:cloudwatch
-```
+![ML platform stateful data plane and stateless control plane](https://raw.githubusercontent.com/danivpv/ml-platform/d9407705a221dfc89e3c00a1c4ca86368e45a5a1/docs/ml-platform-beyond-the-notebook.drawio.svg)
 
 The platform is organized into a **stateful data plane** (S3, DynamoDB, RDS) and a **stateless control plane** (ECS Fargate, EventBridge, CloudWatch). Each subsystem is a self-contained AWS CDK component with its own `infrastructure.py` defining AWS resources and a `runtime/` folder containing the application code. All components are wired together in a single `component.py` file aligned with the [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/).
 
@@ -124,3 +97,4 @@ Which subsystem would have saved your team the most time if you had it on day on
 - **Full Bug & Resolution Log**: [PRD Section 3](https://github.com/danivpv/ml-platform/blob/41f9d85d0a882fbc37fa829c2935b76e140511c9/docs/ml-platform-prd.md#3-bug-and-resolution-log)
 - **[Feast Documentation](https://docs.feast.dev/)**
 - **[MLflow Model Registry](https://mlflow.org/docs/latest/model-registry.html)**
+- **Architecture Diagram (`docs/ml-platform-beyond-the-notebook.drawio.svg`)**: The diagram was added in [`d9407705a221dfc89e3c00a1c4ca86368e45a5a1`](https://github.com/danivpv/ml-platform/commit/d9407705a221dfc89e3c00a1c4ca86368e45a5a1).

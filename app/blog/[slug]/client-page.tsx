@@ -17,7 +17,7 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
 			<div className="max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 					{/* Left Column: Back Button + Article Header + Content stacked vertically */}
-					<div className="lg:col-span-8 space-y-10">
+					<div className="lg:col-span-8 min-w-0 space-y-10">
 						<div>
 							<Link
 								href="/#projects"

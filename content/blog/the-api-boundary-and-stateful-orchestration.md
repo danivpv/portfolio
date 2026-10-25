@@ -14,6 +14,8 @@ cover_image:
 
 In v1, triggering a training run meant modifying AWS primitives via the CLI. To scale to a multi-model catalog, we need a standardized communication protocol (a CQRS API) and stateful orchestration (RDS/Alembic) to track models. But an API is only a suggestion until network isolation (NAT/ALB) enforces it by making the underlying compute invisible to the public internet. This post bridges the gap between ML scripts and enterprise software.
 
+Every architectural choice, rejected alternative, and operational boundary for this increment is recorded across four decisions (network boundary, CQRS API, Alembic, structured errors) in the [architectural decision log](https://github.com/danivpv/ml-platform/blob/50fd79e5322cfe5b71ea14a95a9d1b166c47a379/docs/ml-platform-prd.md#2-architecture-decision-log) at [`commit 50fd79e`](https://github.com/danivpv/ml-platform/tree/50fd79e5322cfe5b71ea14a95a9d1b166c47a379).
+
 ---
 
 ## The Transition from Scripts to Systems
@@ -26,49 +28,7 @@ The moment you introduce a second model, that pattern collapses. A collection of
 
 To orchestrate multiple models, I introduced a catalog database behind a FastAPI application, completely isolating the data plane and the Fargate compute from the public internet.
 
-```mermaid
-architecture-beta
-    group internet(cloud)[Public Internet]
-    service user(server)[User Client] in internet
-
-    group aws(cloud)[AWS Services]
-    service external(disk)[AWS S3 and ECR] in aws
-
-    group vpc(cloud)[AWS VPC Boundary]
-
-    group pub(server)[Public Subnets] in vpc
-    service alb(server)[ALB Inbound] in pub
-    service nat(server)[NAT Outbound] in pub
-
-    group priv(server)[Private Subnets] in vpc
-    service api(server)[FastAPI] in priv
-    service mlflow(server)[MLflow ECS] in priv
-    service train(server)[ECS Training] in priv
-    service inf(server)[ECS Inference] in priv
-
-    group data(database)[Database Subnets] in vpc
-    service rds(database)[RDS Postgres] in data
-
-    %% Inbound Flow
-    user:B --> T:alb
-    alb:B --> T:api
-    alb:B --> T:mlflow
-
-    %% API Orchestration (Triggering Tasks)
-    api:B --> T:train
-    api:B --> T:inf
-
-    %% Outbound Flow (Straight up to prevent boundary-crossing ghost artifacts)
-    train:T --> B:nat
-    inf:T --> B:nat
-
-    %% External AWS Services
-    nat:R --> L:external
-
-    %% Internal State
-    api:L --> R:rds
-    mlflow:L --> R:rds
-```
+![ML platform API behind a public load balancer and private subnets](https://raw.githubusercontent.com/danivpv/ml-platform/d9407705a221dfc89e3c00a1c4ca86368e45a5a1/docs/ml-platform-api-boundary.drawio.svg)
 
 Before jumping into implementation details, we need to examine how the platform's networking is structured to guarantee security and isolation. The architecture is defined by three distinct traffic flows:
 
@@ -165,3 +125,4 @@ Share your trade-offs in the comments below or reach out directly on [LinkedIn](
 
 The complete source code, CDK infrastructure, and commit-locked rationale behind every trade-off discussed in this post reside in the official repository:
 - **Source Code (`commit 50fd79e`)**: [github.com/danivpv/ml-platform](https://github.com/danivpv/ml-platform/tree/50fd79e5322cfe5b71ea14a95a9d1b166c47a379)
+- **Architecture Diagram (`docs/ml-platform-api-boundary.drawio.svg`)**: The diagram was added in [`d9407705a221dfc89e3c00a1c4ca86368e45a5a1`](https://github.com/danivpv/ml-platform/commit/d9407705a221dfc89e3c00a1c4ca86368e45a5a1).
