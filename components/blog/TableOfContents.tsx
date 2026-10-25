@@ -66,7 +66,7 @@ export default function TableOfContents({ sections }: { sections: TocSection[] }
 	return (
 		<aside
 			aria-label="Table of contents"
-			className="lg:col-span-4 w-full lg:sticky lg:top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1 self-start"
+			className="hidden md:block lg:col-span-4 w-full lg:sticky lg:top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-1 self-start"
 		>
 			<div className="p-6 rounded-2xl bg-bg-card border border-border-card shadow-xl space-y-4">
 				<div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent font-semibold border-b border-border-card pb-3">
